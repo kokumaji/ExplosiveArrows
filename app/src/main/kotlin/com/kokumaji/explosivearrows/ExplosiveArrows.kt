@@ -10,9 +10,19 @@ import org.bukkit.plugin.java.JavaPlugin
 @PluginMain
 class ExplosiveArrows: JavaPlugin() {
 
+    companion object {
+        lateinit var instance: ExplosiveArrows
+    }
+
+    override fun onLoad() {
+        instance = this
+        saveDefaultConfig()
+    }
+
     override fun onEnable() {
         println("Plugin has been enabled!")
         Bukkit.getPluginManager().registerEvents(ArrowListener(), this)
+        getCommand("arrows")?.setExecutor(CommandListener())
     }
 
 }

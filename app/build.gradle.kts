@@ -66,5 +66,11 @@ tasks {
         authors = mutableListOf("Kokumaji")
         apiVersion = "1.16"
         version = this.version
+
+        commands {
+            create("arrows") {
+                usage = "/arrows"
+            }
+        }
     }
 }
