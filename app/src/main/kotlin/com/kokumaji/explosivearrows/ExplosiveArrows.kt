@@ -10,8 +10,16 @@ import org.bukkit.plugin.java.JavaPlugin
 @PluginMain
 class ExplosiveArrows: JavaPlugin() {
 
+    // companion object is essentially 'static' in java
     companion object {
         lateinit var instance: ExplosiveArrows
+
+        // can also have functions!
+        fun getPrefix(color: Boolean): String {
+            val prefix = "[${instance.name}]"
+
+            return if(color) "§6$prefix§a" else prefix
+        }
     }
 
     override fun onLoad() {
@@ -20,7 +28,7 @@ class ExplosiveArrows: JavaPlugin() {
     }
 
     override fun onEnable() {
-        println("Plugin has been enabled!")
+        println("${getPrefix(false)} Plugin has been enabled!")
         Bukkit.getPluginManager().registerEvents(ArrowListener(), this)
         getCommand("arrows")?.setExecutor(CommandListener())
     }
